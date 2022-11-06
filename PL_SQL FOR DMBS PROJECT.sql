@@ -61,3 +61,33 @@ begin
     end loop;
     close curs_E;
 end;
+
+------------
+--with Table Train
+create table  TRAIN
+( 
+train_no int primary key,  
+train_name varchar(50), 
+arrival_time varchar(50),  
+departure_time varchar(50),  
+availability_of_seats char, 
+date1 int
+)
+
+insert into TRAIN values(12711,'pinakini exp','113000','114000','A',20170410);
+insert into TRAIN values(12315,'cormandel exp','124500','125000','B',20170411);
+insert into TRAIN values(12235,'khaudu exp','112300','1125400','C',20170412);
+
+declare 
+EE_rec TRAIN%rowtype;
+begin 
+select * into EE_rec 
+from TRAIN
+where train_no=12711;
+
+dbms_output.put_line('Train Number id is ' || EE_rec.train_no);
+dbms_output.put_line('Train Name ' || EE_rec.train_name);
+dbms_output.put_line('Alloted seat ' || EE_rec.availability_of_seats);
+dbms_output.put_line('Arrival Time ' || EE_rec.arrival_time);
+dbms_output.put_line('Departure Time ' || EE_rec.departure_time);
+end;
