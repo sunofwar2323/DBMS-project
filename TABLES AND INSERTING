@@ -52,6 +52,21 @@ no_of_passengers int,
 train_no int 
 )
 
+create table BOOKING 
+(
+passenger_id int primary key,  
+pnr_no int,  
+age int,  
+gender char,  
+user_id int,  
+reservation_status char,  
+seat_number varchar(5), 
+pname varchar(50),  
+ticket_id int,
+ticket_price int,
+ticket_status varchar(20)
+)
+
 create table PASSENGER 
 (passenger_id int primary key,  
 pnr_no int,  
@@ -92,12 +107,6 @@ time1 number
 -- foreign key(station_no) references STATION(no) 
 )
 
-create table  BOOKS 
-( 
-user_id int,  
-id int 
---  
-)
 
 create table CANCEL1 
 ( 
@@ -128,6 +137,10 @@ insert into TICKET values(4001,1701,'C',1,12711);
 insert into TICKET values(4002,1702,'N',1,12315);
 --(id, user_id, status, no_of passengers, train_no)
 
+insert into BOOKING values(5001,78965,45, 'M',1701,'C','B6-45','ramesh',4001, 10000,'sleeperClass');
+insert into BOOKING values(5002,54523,54,'F',1702,'W','B3-21','surekha',4002, 5400, 'GeneralClass');
+insert into BOOKING values(5003,89233,64,'F',1703,'W','B3-25','surekha',4002, 4500, 'GeneralClass');
+
 insert into PASSENGER values(5001,78965,45, 'M',1701,'C','B6-45','ramesh',4001);
 insert into PASSENGER values(5002,54523,54,'F',1701,'W','B3-21','surekha',4002);
 --(passenger_id, pnr_no, age, gender, user_id, reservation_status, seat _ number, name, ticket_id)
@@ -141,8 +154,7 @@ insert into STOPS_AT values(12315,111);
 insert into REACHE values(12711,222,'040000');
 insert into REACHE values(12315,111,'053500');
 
-insert into BOOKS values(1701,4001);
-insert into BOOKS values(1702,4002); 
+
 
 insert into CANCEL1 values (1701,4001,5001);
 insert into CANCEL1 values (1702,4002,5002);
