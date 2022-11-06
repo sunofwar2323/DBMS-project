@@ -131,6 +131,7 @@ EXCEPTION
 END;
 
 ----------
+--7.Exceptional Handle
 
 create table BOOKING 
 (
@@ -178,3 +179,35 @@ When no_data_found then
 when others then
     dbms_output.put_line('internal error');
 END;
+
+-----------------
+--8.Tigger
+
+create table BOOKING 
+(
+passenger_id int primary key,  
+pnr_no int,  
+age int,  
+gender char,  
+user_id int,  
+reservation_status char,  
+seat_number varchar(5), 
+pname varchar(50),  
+ticket_id int,
+ticket_price int,
+ticket_status varchar(20)
+)
+
+insert into BOOKING values(5001,78965,45, 'M',1701,'C','B6-45','ramesh',4001, 10000,'sleeperClass');
+insert into BOOKING values(5002,54523,54,'F',1702,'W','B3-21','surekha',4002, 5400, 'GeneralClass');
+insert into BOOKING values(5003,89233,64,'F',1703,'W','B3-25','surekha',4002, 4500, 'GeneralClass');
+
+
+create or replace trigger trig_1 before update on BOOKING
+begin
+dbms_output.put_line('record updated');
+end;
+
+update BOOKING set ticket_price=ticket_price+1.5 where ticket_price>1000;
+
+
