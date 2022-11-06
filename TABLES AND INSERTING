@@ -16,6 +16,10 @@ security_ques varchar(50),
 security_ans varchar(50) 
 )
 
+insert into USER1 values (1701,'vijay', 'sharma', '309887340843','M',34,'9887786655','vijay1@gmail.com','vijayawada','andhrapradesh','520001','12345@#','favouritecolour','red');
+insert into USER1 values (1702,'rohith','kumar','456709871234,','M',45,'9809666555','rohith1kumar@gmail.com','guntur','andhrapradesh','522004','12@#345','favouritebike','bmw');
+insert into USER1 values (1703,'manasvi','sree','765843210987','F',20,'9995550666','manasvi57@gmail.com','guntur','andhrapradesh','522004','0987hii', 'favourite flower','rose');
+
 create table  TRAIN3
 ( 
 train_no int primary key,  
