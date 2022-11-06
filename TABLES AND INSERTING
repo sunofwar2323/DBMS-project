@@ -47,12 +47,9 @@ create table  TICKET
 ( 
 ticket_id int primary key,  
 user_id int,  
-status char,  
+status varchar(30),  
 no_of_passengers int,  
 train_no int 
---constraint foreign key (user id) references 
---(user id),  
---constraint foreign key(train_no) references TRAIN(train no) 
 )
 
 create table PASSENGER 
@@ -65,9 +62,7 @@ reservation_status char,
 seat_number varchar(5),  
 name varchar(50),  
 ticket_id int 
---constraint foreign key(use_id) 
--- references USER(user_id), constraint foreign key(ticket_ id) references 
---TICKET(id) 
+
 )
 
 
