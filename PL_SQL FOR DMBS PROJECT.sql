@@ -210,4 +210,20 @@ end;
 
 update BOOKING set ticket_price=ticket_price+1.5 where ticket_price>1000;
 
+-------------------
+select * from TRAIN_STATUS
+create or replace trigger display_diff
+before delete or insert or update on TRAIN_STATUS
+for each row when(New.train_no>0)
+
+declare
+diff number;
+begin
+diff:= New.fare1-old.fare1;
+dbms_output.put_line('old FARE', old.fare1);
+dbms_output.put_line('new NEW FARE', new.fare1);
+dbms_output.put_line('difference', old.diff);
+
+end;
+
 
