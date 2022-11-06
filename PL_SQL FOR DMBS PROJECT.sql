@@ -129,3 +129,52 @@ EXCEPTION
    WHEN others THEN  
       dbms_output.put_line(' Internal Error!');  
 END;
+
+----------
+
+create table BOOKING 
+(
+passenger_id int primary key,  
+pnr_no int,  
+age int,  
+gender char,  
+user_id int,  
+reservation_status char,  
+seat_number varchar(5), 
+pname varchar(50),  
+ticket_id int,
+ticket_price int,
+ticket_status varchar(20)
+)
+insert into BOOKING values(5001,78965,45, 'M',1701,'C','B6-45','ramesh',4001, 10000,'sleeperClass');
+insert into BOOKING values(5002,54523,54,'F',1702,'W','B3-21','surekha',4002, 5400, 'GeneralClass');
+insert into BOOKING values(5003,89233,64,'F',1703,'W','B3-25','surekha',4002, 4500, 'GeneralClass');
+
+
+DECLARE  
+EE_id BOOKING.user_id%type:=1701;  
+EE_name  BOOKING.pname%type;  
+EE_addr BOOKING.age%type;
+EE_status BOOKING.ticket_status%type;
+exception_invalid exception;
+
+BEGIN  
+
+if EE_id<0 then
+    raise exception_invalid;
+else
+  select user_id,pname,age,ticket_status into EE_id,EE_Name,EE_addr,EE_status
+  from(select * from BOOKING where ticket_price>3000)
+  where user_id=EE_id;
+dbms_output.put_line('With User Id '||EE_id ||' '||EE_name ||' who is '||EE_addr ||' years old has '||EE_status ||' ticket ');
+
+end if;
+
+EXCEPTION  
+WHEN exception_invalid then
+    dbms_output.put_line('id value must be greater than zero');  
+When no_data_found then
+    dbms_output.put_line('No entries available');
+when others then
+    dbms_output.put_line('internal error');
+END;
