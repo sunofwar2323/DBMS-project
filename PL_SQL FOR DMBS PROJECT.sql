@@ -63,7 +63,7 @@ begin
 end;
 
 ------------
---with Table Train
+--5.with Table Train
 create table  TRAIN
 ( 
 train_no int primary key,  
@@ -91,3 +91,41 @@ dbms_output.put_line('Alloted seat ' || EE_rec.availability_of_seats);
 dbms_output.put_line('Arrival Time ' || EE_rec.arrival_time);
 dbms_output.put_line('Departure Time ' || EE_rec.departure_time);
 end;
+
+--6. Exceptional handling
+create table  TICKET 
+( 
+ticket_id int primary key,  
+user_id int,  
+status varchar(30),  
+no_of_passengers int,  
+train_no int 
+)
+
+insert into TICKET values(4001,1701,'Booked',1,12711);
+insert into TICKET values(4002,1702,'Booked',1,12315);
+insert into TICKET values(4003,1703,'Processing',1,12231);
+
+--(id, user_id, status, no_of passengers, train_no)
+
+
+
+DECLARE  
+   c_id TICKET.user_id%type ;   
+   c_ticket  TICKET.ticket_id%type;  
+   c_addr TICKET.status%type;  
+BEGIN  
+   SELECT  user_id, ticket_id, status INTO  c_id, c_ticket, c_addr  
+   FROM TICKET  
+   WHERE  user_id= 1703;  
+DBMS_OUTPUT.PUT_LINE ('User ID is '||  c_id); 
+DBMS_OUTPUT.PUT_LINE ('Name is '||  c_ticket);
+DBMS_OUTPUT.PUT_LINE ('With with current status '|| c_addr); 
+
+ 
+EXCEPTION   
+   WHEN no_data_found THEN   
+      dbms_output.put_line('No such  Customer!');  
+   WHEN others THEN  
+      dbms_output.put_line(' Internal Error!');  
+END;
