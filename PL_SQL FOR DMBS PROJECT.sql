@@ -64,32 +64,36 @@ end;
 
 ------------
 --5.with Table Train
-create table  TRAIN
-( 
-train_no int primary key,  
-train_name varchar(50), 
-arrival_time varchar(50),  
-departure_time varchar(50),  
-availability_of_seats char, 
-date1 int
+create table PASSENGER 
+(
+passenger_id int primary key,  
+pnr_no int,  
+age int,  
+gender char,  
+user_id int,  
+reservation_status char,  
+seat_number varchar(5),  
+name varchar(50),  
+ticket_id int 
 )
 
-insert into TRAIN values(12711,'pinakini exp','113000','114000','A',20170410);
-insert into TRAIN values(12315,'cormandel exp','124500','125000','B',20170411);
-insert into TRAIN values(12235,'khaudu exp','112300','1125400','C',20170412);
+insert into PASSENGER values(5001,78965,45, 'M',1701,'C','B6-45','ramesh',4001);
+insert into PASSENGER values(5002,54523,54,'F',1701,'W','B3-21','surekha',4002);
 
 declare 
-EE_rec TRAIN%rowtype;
+EE_rec PASSENGER%rowtype;
 begin 
 select * into EE_rec 
-from TRAIN
-where train_no=12711;
+from PASSENGER
+where passenger_id=5001;
 
-dbms_output.put_line('Train Number id is ' || EE_rec.train_no);
-dbms_output.put_line('Train Name ' || EE_rec.train_name);
-dbms_output.put_line('Alloted seat ' || EE_rec.availability_of_seats);
-dbms_output.put_line('Arrival Time ' || EE_rec.arrival_time);
-dbms_output.put_line('Departure Time ' || EE_rec.departure_time);
+dbms_output.put_line('Passenger id is: ' || EE_rec.passenger_id);
+dbms_output.put_line('Name : ' || EE_rec.name);
+dbms_output.put_line('Age: ' || EE_rec.age);
+dbms_output.put_line('Gender: ' || EE_rec.gender);
+dbms_output.put_line('Reservation status: ' || EE_rec.reservation_status);
+dbms_output.put_line('Seat Number: ' || EE_rec.seat_number);
+dbms_output.put_line('Ticket id: ' || EE_rec.ticket_id);
 end;
 
 --6. Exceptional handling
